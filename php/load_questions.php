@@ -9,11 +9,11 @@ foreach($resultArr as $result) {
     <h4 class="card-title">'.$result['title'].'</h4>
     <p class="card-text">'.$result['content'].'</p>
     <form action="manager.php" method="post">
-<button type="submit" value="upvote">Upvote</button>
+<button type="submit" class="btn btn-success" value="upvote">Upvote</button>
 <input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
 </form>
 <form action="manager.php" method="post">
-  <button type="submit" value="downvote">Downvote</button>
+  <button type="submit" class="btn btn-danger" value="downvote">Downvote</button>
 <input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
 </form>  
 <form action="manager.php" method="post">
@@ -23,4 +23,7 @@ foreach($resultArr as $result) {
   </div>
 </div>');
 };?>
+</div>
+
+<div class="container">
 </div>

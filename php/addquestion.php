@@ -9,7 +9,7 @@ else{
 $manager=new manager();
 $resultArr=$manager->load_subjects();
 
-print_r($resultArr);
+// print_r($resultArr);
 ?>
 
 
@@ -34,14 +34,30 @@ print_r($resultArr);
 			</div>
 			<div class="card-body">
 		<form class="box" action="manager.php" method="post">
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<input type="text" name="subject" class = "form-control" placeholder="Subject" required="" id="">
+			</div> -->
+			<div class="form-group">
+			<label for="">Subject</label>
+     			<select class="form-control" name="subject" type="text" placeholder="status" >
+		        <option>None</option>
+						<?php 
+							foreach($resultArr as $result) {
+									echo('
+									<option>'.$result['sub_name'].'</option>
+									');
+							};
+						
+						?>
+		        </select>
+				</div>
+			<div class="form-group">
+			<label for="">Title</label>
+				<input type="text" name="title" class = "form-control" placeholder="" required="" id="">
 			</div>
 			<div class="form-group">
-				<input type="text" name="title" class = "form-control" placeholder="Title" required="" id="">
-			</div>
-			<div class="form-group">
-				<input type="text" name="content" class = "form-control" placeholder="Content" required="" id=""><br>
+			<label for="">Content</label>
+				<input type="text" name="content" class = "form-control" placeholder="" required="" id=""><br>
 			</div>
 			<div class="form-group" style="text-align: center;">
 				<input type="submit" name="addquestion" class="btn btn-primary"value="Submit" >

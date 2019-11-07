@@ -11,7 +11,7 @@ require_once('utility.php'); ?>
 <head>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<meta charset="utf-8">
-	<title>Login</title>
+	<title>Home</title>
 	<link rel="stylesheet" href="">
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
