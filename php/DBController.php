@@ -28,7 +28,12 @@ class DBController {
 	//will find the number of rows related to the results of the query.
 	function numRows($query) {
 	    $result2  = mysqli_query($this->conn, $query);
-		$rowcount = mysqli_num_rows($result2);
+	    if ($result2){
+	    	$rowcount = mysqli_num_rows($result2);	
+	    }
+		else{
+			$rowcount=-1;
+		}
 		return $rowcount;	
 	}
 	//if the query is invalid will let the query be updated.

@@ -46,6 +46,7 @@ if (is_null($resultArr)){
     <h4 class="card-title">'.$result['username'].'['.$result['type'].']'.'</h4>
     <p class="card-text">'.$result['content'].'</p>
   </div>
+  <a href="addanswer.php?id='.$result['q_id'].'">View Answers</a> 
 </div>');
 };
 

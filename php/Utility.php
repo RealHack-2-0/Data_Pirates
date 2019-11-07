@@ -76,9 +76,28 @@
 			}
 		}
 
-		public function upvote($q_id){
-			$query="UPDATE question SET upvote_count=upvote_count+1 WHERE q_id='$q_id'";
-			$result=$this->controller->updateQuery($query);
+		public function upvote($q_id,$user_id){
+			$checkvote="SELECT * from vote_counts where user_id='$user_id' and q_id='$q_id'";
+			$checked=$this->controller->numRows($checkvote);
+			if ($checked==0){
+				$insert_upvote="INSERT INTO vote_counts (`user_id`, `q_id`, `up_voted`, `down_voted`) VALUES ('$user_id','$q_id',1,0)";
+				$update_votes="UPDATE question SET upvote_count=upvote_count+1 WHERE q_id='$q_id'";
+				$updated=$this->controller->updateQuery($update_votes);
+				$inserted=$this->controller->insertQuery($insert_upvote);
+			}else{
+				$getvote=$this->controller->runQuery($checkvote);
+				if ($getvote[0]['up_voted']==0){
+					$setone="UPDATE vote_counts SET up_voted=1,down_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setone);
+					$update_votes="UPDATE question SET upvote_count=upvote_count+1,downvote_count=downvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}else{
+					$setzero="UPDATE vote_counts SET up_voted=0,down_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setzero);
+					$update_votes="UPDATE question SET upvote_count=upvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}
+			}
 		}
 		
 		public function getSubjectss(){
@@ -91,13 +110,27 @@
 			}
 		}
 
-		public function downvote($q_id){
-			$query="UPDATE question SET downvote_count=downvote_count+1 WHERE q_id='$q_id'";
-			$result=$this->controller->updateQuery($query);
-			if($result){
-				return $result;
+		public function downvote($q_id,$user_id){
+			$checkvote="SELECT * from vote_counts where user_id='$user_id' and q_id='$q_id'";
+			$checked=$this->controller->numRows($checkvote);
+			if ($checked==0){
+				$insert_downvote="INSERT INTO vote_counts (`user_id`, `q_id`, `up_voted`, `down_voted`) VALUES ('$user_id','$q_id',0,1)";
+				$update_votes="UPDATE question SET downvote_count=downvote_count+1 WHERE q_id='$q_id'";
+				$updated=$this->controller->updateQuery($update_votes);
+				$inserted=$this->controller->insertQuery($insert_downvote);
 			}else{
-				return null;
+				$getvote=$this->controller->runQuery($checkvote);
+				if ($getvote[0]['down_voted']==0){
+					$setone="UPDATE vote_counts SET down_voted=1,up_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setone);
+					$update_votes="UPDATE question SET upvote_count=upvote_count-1,downvote_count=downvote_count+1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}else{
+					$setzero="UPDATE vote_counts SET down_voted=0,up_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setzero);
+					$update_votes="UPDATE question SET downvote_count=downvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}
 			}
 		}
 
