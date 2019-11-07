@@ -11,6 +11,8 @@ if(isset($_POST['signup'])){
 	$manager->login(); 	
 }elseif (isset($_POST['addquestion'])){
 	$manager->addquestion(); 	
+}elseif (isset($_POST['addquestion'])) {
+	$manager->addanswer(); 
 }
 
 class manager{
@@ -157,6 +159,11 @@ class manager{
 		$result=$utility->getSubjectss();
 		return $result;
 	}
+
+	public function addquestion(){
+		
+	}
+
 }
 
 ?>
