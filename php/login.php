@@ -20,7 +20,9 @@
 
 
 </head>
-<body style="background-image: url('https://www.solidbackgrounds.com/images/website/950x534/950x534-blue-abstract-noise-free-website-background-image.jpg');">
+<body style="background-color: #DADEDF;">
+<?php include 'navbar.php';?>
+
 	<header>
 	<div class ="card border-primary mb-3" style="max-width: 30rem; margin:auto; top:8rem; background-color: ;" >
 		<div class="card-header" style="text-align: center">
