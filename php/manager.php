@@ -178,9 +178,6 @@ class manager{
 		return $result;
 	}
 
-	public function addquestion(){
-		
-	}
 
 }
 
