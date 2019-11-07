@@ -83,7 +83,8 @@
 
 <script>
 $(document).ready(function() {
-    $.get( "/RealHack-webapp-master/php/getnotification", function( data ) {
+    $.get( "/RealHack-webapp-master/php/getnotification.php", function( data ) {
+      console.log(data)
         var countNotification = (data.match(/href/g) || []).length ;
         $('.sidenav').append(data);
         if (countNotification != 0) {

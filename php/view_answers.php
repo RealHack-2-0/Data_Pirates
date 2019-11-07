@@ -46,7 +46,6 @@ if (is_null($resultArr)){
     <h4 class="card-title">'.$result['username'].'['.$result['type'].']'.'</h4>
     <p class="card-text">'.$result['content'].'</p>
   </div>
-  <a href="addanswer.php?id='.$result['q_id'].'">View Answers</a> 
 </div>');
 };
 
@@ -62,7 +61,7 @@ if(isset($_SESSION['set'])){
   <div class="form-group">
 
     <form action="manager.php" method="post">
-    <input type="hidden" id="q_id" name="q_id" value=<?= $q_id ?>
+    <input type="hidden" id="q_id" name="q_id" value='. $q_id.'
     <div class="form-group">
       <input type="text" name="content" class = "form-control" placeholder="Add your answer" required="" id="">
     </div>
