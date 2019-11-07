@@ -29,7 +29,7 @@ class manager{
         return self::$sessions[$key];
     }
 
-    private function __construct(){}
+    public function __construct(){}
 
     private function __clone(){}
 
@@ -144,8 +144,12 @@ class manager{
 		}
 	}
 
-
-
+	public function load_questions(){
+		$utility=new Utility();
+		$result=$utility->getQuestions();
+		return $result;
 	}
+
+}
 
 ?>

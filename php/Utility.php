@@ -57,6 +57,16 @@
 			}
 		}
 
+		public function getQuestions(){
+			$query="SELECT content from question order by upvote_count desc limit 10";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
 	}
 
 ?>
