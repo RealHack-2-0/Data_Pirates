@@ -1,16 +1,6 @@
 <?php require_once('manager.php');
 require_once('utility.php'); ?>
 
-<?php 
-require_once('initialize.php');
-if(isset($_SESSION['set'])){
-  echo "logged in";
-}
-else{
-  echo "not logged in";
-}
-
- ?>
 
 <?php require_once('Connection.php'); 
       require_once('initialize.php');
