@@ -46,10 +46,12 @@ class manager{
 
 			echo "Logged In";
 			$_SESSION['set']="set";
-			$_SESSION['currentuser']=new user();
-			$gotInfo=($_SESSION['currentuser']->getBasicInfoByEmail($email));
+			$utility=new Utility();
+			$_SESSION['currentuser']= $utility -> getUserIdInfoByEmail($email);
 			
-
+			$user = $_SESSION['currentuser'];
+			print_r($user);
+			header("Location:index.php");
 
 			
 		}
@@ -124,8 +126,7 @@ class manager{
 	}
 
 	public function addquestion(){
-		$currentuser = $_SESSION['currentuser'];
-		$userid = $currentuser ->id;
+		$userid = $_SESSION['currentuser'];
 
 		$content = $_POST['content'];
 		$title = $_POST['title'];

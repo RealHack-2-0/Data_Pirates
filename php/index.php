@@ -1,4 +1,5 @@
 <?php require_once('Connection.php'); 
+      require_once('initialize.php');
  $db = Database::getInstance();
  $conn = $db->getConnection();?>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
         }
       }
       function getQuestions($conn){
-        $query="SELECT * FROM question";
+        $query="SELECT * FROM `question`";
         $result=insertQuery($query,$conn);
         if($result){
           echo($result);
