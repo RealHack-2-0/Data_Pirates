@@ -12,7 +12,9 @@
 	<title>Add New Question</title>
 </head>
 <body style="background-color: #DADEDF;">
-	<?php include 'navbar.php';?>
+	<?php include 'navbar.php';
+		$q_id=$_GET['id'];
+	?>
 	<div class ="card border-primary mb-3" style="max-width: 30rem; margin:auto; top:8rem; background-color: ;" >
 			<div class="card-header" style="text-align: center">
 				Your Answer
