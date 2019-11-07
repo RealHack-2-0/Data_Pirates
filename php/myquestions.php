@@ -26,8 +26,10 @@ require_once('utility.php'); ?>
 
 
 </head>
+<?php include 'navbar.php';?>
 
 <div class="container">
+
 <?php 
 $manager=new manager();
 $resultArr=$manager->load_my_questions($_SESSION['currentuser']['id']);
@@ -45,16 +47,7 @@ if (is_null($resultArr)){
         <div class="col-sm">
             <a href="myqs_answer.php?id='.$result['q_id'].'" class="btn btn-primary">View Answers</a> 
           </div>
-          <div class="col-sm">
-          <form action="manager.php" method="post">
-          <button type="submit" name="edit" value="edit">Edit</button>
-          <input type="hidden" id="id" name="q_id" value='.$result['q_id'].'>
-          </form>
-          <form action="manager.php" method="post">
-            <button type="submit" name="delete" value="delete">Delete</button>
-          <input type="hidden" id="id" name="q_id" value='.$result['q_id'].'>
-          </form> 
-        </div>
+          
         </div>
       </div>
     </div>
