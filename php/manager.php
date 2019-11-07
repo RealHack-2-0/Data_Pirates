@@ -162,13 +162,13 @@ class manager{
 
 	public function upvote(){
 		$utility=new Utility();
-		$result=$utility->upvote($_POST['q_id']);
+		$result=$utility->upvote($_POST['q_id'],$_POST['id']);
 		return $result;
 	}
 
 	public function downvote(){
 		$utility=new Utility();
-		$result=$utility->downvote($_POST['q_id']);
+		$result=$utility->downvote($_POST['q_id'],$_POST['id']);
 		return $result;
 	}
 
