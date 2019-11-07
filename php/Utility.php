@@ -31,6 +31,11 @@
 			return $result;
 		}
 
+		public function checkSignup($email){
+			$query="SELECT * FROM user WHERE email LIKE '%$email%'";
+			$result=$this->controller->numRows($query);
+			return $result;
+		}
 
 		
 

@@ -41,7 +41,7 @@
 					<input type="password" name="reconfirmedPassword" placeholder="Re-Confirm Password" required="" class="form-control">
 				</div>
 				<div class="form-group" style="text-align: center;">
-					<input type="submit" name="signup_JS"value="Sign Up" class="btn btn-primary" >
+					<input type="submit" name="signup"value="Sign Up" class="btn btn-primary" >
 				</div>
 				<P>Already have an account ? <a href="login.php"> Log In Here</a></P>
 			</form>
