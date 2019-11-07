@@ -143,6 +143,36 @@
 				return null;
 			}
 		}
+
+		public function addanswer($q_id,$user_id,$ans){
+			$query="INSERT INTO answer (user_id,content,q_id)VALUES ('$user_id','$ans','$q_id')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function addnotification($auther){
+			$query="INSERT INTO notification (user_id,notification)VALUES ('$auther','Your Question has been answered')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function getauther($q_id){
+			$query="SELECT user_id from question where q_id='$q_id'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
 	}
 
 ?>
