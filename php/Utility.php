@@ -76,9 +76,28 @@
 			}
 		}
 
-		public function upvote($q_id){
-			$query="UPDATE question SET upvote_count=upvote_count+1 WHERE q_id='$q_id'";
-			$result=$this->controller->updateQuery($query);
+		public function upvote($q_id,$user_id){
+			$checkvote="SELECT * from vote_counts where user_id='$user_id' and q_id='$q_id'";
+			$checked=$this->controller->numRows($checkvote);
+			if ($checked==0){
+				$insert_upvote="INSERT INTO vote_counts (`user_id`, `q_id`, `up_voted`, `down_voted`) VALUES ('$user_id','$q_id',1,0)";
+				$update_votes="UPDATE question SET upvote_count=upvote_count+1 WHERE q_id='$q_id'";
+				$updated=$this->controller->updateQuery($update_votes);
+				$inserted=$this->controller->insertQuery($insert_upvote);
+			}else{
+				$getvote=$this->controller->runQuery($checkvote);
+				if ($getvote[0]['up_voted']==0){
+					$setone="UPDATE vote_counts SET up_voted=1,down_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setone);
+					$update_votes="UPDATE question SET upvote_count=upvote_count+1,downvote_count=downvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}else{
+					$setzero="UPDATE vote_counts SET up_voted=0,down_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setzero);
+					$update_votes="UPDATE question SET upvote_count=upvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}
+			}
 		}
 		
 		public function getSubjectss(){
@@ -91,9 +110,33 @@
 			}
 		}
 
-		public function downvote($q_id){
-			$query="UPDATE question SET downvote_count=downvote_count+1 WHERE q_id='$q_id'";
-			$result=$this->controller->updateQuery($query);
+		public function downvote($q_id,$user_id){
+			$checkvote="SELECT * from vote_counts where user_id='$user_id' and q_id='$q_id'";
+			$checked=$this->controller->numRows($checkvote);
+			if ($checked==0){
+				$insert_downvote="INSERT INTO vote_counts (`user_id`, `q_id`, `up_voted`, `down_voted`) VALUES ('$user_id','$q_id',0,1)";
+				$update_votes="UPDATE question SET downvote_count=downvote_count+1 WHERE q_id='$q_id'";
+				$updated=$this->controller->updateQuery($update_votes);
+				$inserted=$this->controller->insertQuery($insert_downvote);
+			}else{
+				$getvote=$this->controller->runQuery($checkvote);
+				if ($getvote[0]['down_voted']==0){
+					$setone="UPDATE vote_counts SET down_voted=1,up_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setone);
+					$update_votes="UPDATE question SET upvote_count=upvote_count-1,downvote_count=downvote_count+1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}else{
+					$setzero="UPDATE vote_counts SET down_voted=0,up_voted=0 WHERE q_id='$q_id' and user_id='$user_id'";
+					$sett=$this->controller->updateQuery($setzero);
+					$update_votes="UPDATE question SET downvote_count=downvote_count-1 WHERE q_id='$q_id'";
+					$updated=$this->controller->updateQuery($update_votes);
+				}
+			}
+		}
+
+		public function load_answers($q_id){
+			$query="SELECT * from answer,user where user_id=id and q_id='$q_id'";
+			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;
 			}else{
@@ -101,8 +144,48 @@
 			}
 		}
 
-		public function load_answers($q_id){
-			$query="SELECT * from answer,user where user_id=id and q_id='$q_id'";
+		public function addanswer($q_id,$user_id,$ans){
+			$query="INSERT INTO answer (user_id,content,q_id)VALUES ('$user_id','$ans','$q_id')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function addnotification($auther){
+			$query="INSERT INTO notification (user_id,notification)VALUES ('$auther','Your Question has been answered')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function getauther($q_id){
+			$query="SELECT user_id from question where q_id='$q_id'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function load_notification($user_id){
+			$query="SELECT notification from notification where user_id = '$user_id' and status = '1'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function clear_notification($user_id){
+			$query="UPDATE notification SET status=0 WHERE user_id='$user_id' ";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;

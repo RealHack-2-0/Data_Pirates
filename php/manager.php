@@ -17,7 +17,7 @@ if(isset($_POST['signup'])){
 	$manager->view_answers(); 	
 }elseif (isset($_POST['addquestion'])){
 	$manager->addquestion(); 	
-}elseif (isset($_POST['addquestion'])) {
+}elseif (isset($_POST['addanswer'])) {
 	$manager->addanswer(); 
 }
 
@@ -203,13 +203,13 @@ class manager{
 
 	public function upvote(){
 		$utility=new Utility();
-		$result=$utility->upvote($_POST['q_id']);
+		$result=$utility->upvote($_POST['q_id'],$_POST['id']);
 		return $result;
 	}
 
 	public function downvote(){
 		$utility=new Utility();
-		$result=$utility->downvote($_POST['q_id']);
+		$result=$utility->downvote($_POST['q_id'],$_POST['id']);
 		return $result;
 	}
 
@@ -223,6 +223,52 @@ class manager{
 		$utility=new Utility();
 		$result=$utility->load_answers($q_id);
 		return $result;
+	}
+
+	public function addanswer(){
+		$q_id = $_POST['q_id'];
+		$user_id = $_SESSION['currentuser']['id'];
+
+		$ans = $_POST['content'];
+
+		$utility=new Utility();
+		$result=$utility->addanswer($q_id,$user_id,$ans);
+	
+	if ($result){
+		$auther=$utility->getauther($q_id)[0];
+
+		$result1=$utility->addnotification($auther['user_id']);
+	}else{
+		echo "error";
+	}
+	
+
+	}
+
+	public function load_notification(){
+		$user_id = $_SESSION['currentuser']['id'];
+
+		$utility=new Utility();
+		$result=$utility->load_notification($user_id);
+
+		if($result){
+			return $result;
+		}else{
+			return null;
+		}
+	}
+
+	public function clear_notifivation(){
+		$user_id = $_SESSION['currentuser']['id'];
+
+		$utility=new Utility();
+		$result=$utility->clear_notification($user_id);
+
+		if($result){
+			return $result;
+		}else{
+			return null;
+		}
 	}
 
 }
