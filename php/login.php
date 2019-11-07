@@ -32,7 +32,7 @@
 		<div class="card-body">
 			<form class="box" action="manager.php" method="post">
 			<div class="form-group">
-				<input type="email" name="JS_email" class = "form-control" placeholder="Username" required="" id="">
+				<input type="email" name="email" class = "form-control" placeholder="Username" required="" id="">
 			</div>
 			<div class="form-group">
 				<input type="password" name="password" class = "form-control" placeholder="Password" required="" id=""><br>
