@@ -37,8 +37,8 @@
 			return $result;
 		}
 
-		public function getBasicInfoByEmail($email){
-			$query="SELECT * FROM user WHERE email='$email'";
+		public function getUserIdInfoByEmail($email){
+			$query="SELECT id FROM user WHERE email='$email'";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;
