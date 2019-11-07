@@ -15,6 +15,9 @@
         echo '
         <li class="nav-item">
         <a class="nav-link" href="addquestion.php">Add Question</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="myquestions.php">My Questions</a>
       </li>
       <li class="nav-item">
       <a class="nav-link" href="logout.php">Logout</a>

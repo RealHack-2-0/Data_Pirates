@@ -56,7 +56,7 @@
 
 
 		public function addquestion($subject_id,$title,$userid,$content){
-			$query="INSERT INTO question (user_id,subject_id,title,content)VALUES ('$userid','$subject_id','$title','$content')";
+			$query="INSERT INTO question (user_id,subject_id,title,content,is_active)VALUES ('$userid','$subject_id','$title','$content',1)";
 			$result=$this->controller->insertQuery($query);
 			if($result){
 				return $result;
@@ -67,7 +67,7 @@
 
 
 		public function getQuestions(){
-			$query="SELECT * from question order by upvote_count desc limit 10";
+			$query="SELECT * from question where is_active=1 order by upvote_count desc limit 10";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;
@@ -173,6 +173,32 @@
 				return null;
 			}
 		}
+
+		public function getmyquestions($user_id){
+			$query="SELECT * from question where is_active=1 and user_id='$user_id' order by upvote_count";
+			$result=$this->controller->numRows($query);
+			if($result>0){
+				$result=$this->controller->runQuery($query);
+				return $result;
+			}
+			else{
+				return null;
+			}
+		}
+
+		public function set_best_answer($q_id,$ans_id){
+			$check="SELECT * from best_answer where q_id='$q_id' and ans='$ans_id'";
+			$checked=$this->controller->numRows($check);
+			if ($checked==0){
+				$query="INSERT INTO best_answer (q_id,ans)VALUES ('$q_id','$ans_id')";
+				$inserted=$this->controller->insertQuery($query);
+
+			}else{
+				$query="UPDATE best_answer SET ans='$ans_id' where q_id='$q_id'";
+			}
+
+		}
+
 	}
 
 ?>

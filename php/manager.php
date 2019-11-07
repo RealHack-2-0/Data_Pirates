@@ -19,6 +19,8 @@ if(isset($_POST['signup'])){
 	$manager->addquestion(); 	
 }elseif (isset($_POST['addanswer'])) {
 	$manager->addanswer(); 
+}elseif (isset($_POST['isbest'])) {
+	$manager->set_best_answer(); 
 }
 
 class manager{
@@ -148,7 +150,7 @@ class manager{
 		$questionadded = $utility->addquestion($subject_id['subject_id'],$title,$userid,$content);
 
 		if($questionadded){
-			header("Location:index.php");
+			header("Location:myquestions.php");
 		}else{
 			echo "error";
 		}
@@ -163,12 +165,14 @@ class manager{
 	public function upvote(){
 		$utility=new Utility();
 		$result=$utility->upvote($_POST['q_id'],$_POST['id']);
-		return $result;
+		header("Location:index.php");
+		// return $result;
 	}
 
 	public function downvote(){
 		$utility=new Utility();
 		$result=$utility->downvote($_POST['q_id'],$_POST['id']);
+		header("Location:index.php");
 		return $result;
 	}
 
@@ -195,12 +199,26 @@ class manager{
 	if ($result){
 		$result1=$utility->getauther($q_id);
 		$result1=$utility->addnotification($q_id,$user_id);
+		header("Location:index.php");
 	}else{
 		echo "error";
 	}
 	
+	}
 
-}
+	public function load_my_questions($user_id){
+		$utility=new Utility();
+		$result=$utility->getmyQuestions($user_id);
+		return $result;
+	}
+
+	public function set_best_answer(){
+		$utility=new Utility();
+		$result=$utility->set_best_answer($_POST['q_id'],$_POST['ans_id']);
+		header("Location:myquestions.php");
+		// return $result;
+
+	}
 }
 
 ?>

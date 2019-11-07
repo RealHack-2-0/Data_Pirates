@@ -9,11 +9,11 @@ require_once('utility.php'); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<meta charset="utf-8">
-	<title>Home</title>
-	<link rel="stylesheet" href="">
-	<meta charset="utf-8">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -29,7 +29,7 @@ require_once('utility.php'); ?>
 <body style="background-color: #DADEDF;">
 <?php include 'navbar.php';?>
 
-	<header>
+  <header>
   <div style="margin-top: 50px">
     
 <div class="container">
@@ -38,44 +38,29 @@ $manager=new manager();
 $q_id=$_GET['id'];
 $resultArr=$manager->load_answers($q_id);
 if (is_null($resultArr)){
-	
+  
 }else{
-	foreach($resultArr as $result) {
+  foreach($resultArr as $result) {
     
   echo ('<div class="card border-success mb-3" >
   <div class="card-body">
     <h4 class="card-title">'.$result['username'].'['.$result['type'].']'.'</h4>
     <p class="card-text">'.$result['content'].'</p>
+    <form action="manager.php" method="post">
+          <button type="submit" name="isbest" value="best">Best Answer</button>
+      <input type="hidden" id="id" name="ans_id" value='.$result['answer_id'].'>
+            <input type="hidden" id="id" name="q_id" value='.$q_id.'>
+
+    </form> 
+    
   </div>
-  <a href="addanswer.php?id='.$result['q_id'].'">View Answers</a> 
 </div>');
 };
 
 }
-
-
-$q_id=$_GET['id'];
 ?>
-	<div class ="card border-primary mb-3">
-		<div class="card-body">
-    <div class="form-group">
-
-			<form action="manager.php" method="post">
-      <input type="hidden" id="q_id" name="q_id" value=<?= $q_id ?> >
-      <div class="form-group">
-        <input type="text" name="content" class = "form-control" placeholder="Add your answer" required="" id="">
-      </div>
-			<div class="form-group" style="text-align: center;">
-				<input type="submit" name="addanswer" class="btn btn-primary"value="Submit" >
-			</div>
-		</form>
-		</div>
-    
-    </div>
-
-</div>
 
 
-	</header>
+  </header>
 </body>
 </html>

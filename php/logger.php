@@ -15,6 +15,7 @@ class logger{
 	public function login(){
 		$result=$this->utility->compareLoginDetails($this->email,$this->password);
 			if(($result==1)){
+				$_SESSION["user_email"] = $this->email;
 				return true;
 			}else{
 				return false;
