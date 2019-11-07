@@ -17,6 +17,8 @@ if(isset($_POST['signup'])){
 	$manager->view_answers(); 	
 }elseif (isset($_POST['addquestion'])){
 	$manager->addquestion(); 	
+}elseif (isset($_POST['addquestion'])) {
+	$manager->addanswer(); 
 }
 
 class manager{

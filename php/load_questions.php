@@ -8,7 +8,8 @@ foreach($resultArr as $result) {
   <div class="card-body">
     <h4 class="card-title">'.$result['title'].'</h4>
     <p class="card-text">'.$result['content'].'</p>
-    <form action="manager.php" method="post">
+    
+<form action="manager.php" method="post">
 <button type="submit" name="upvote" value="upvote">Upvote</button>
 <input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
 </form>
@@ -21,4 +22,7 @@ foreach($resultArr as $result) {
 </div>
 </div>');
 };?>
+</div>
+
+<div class="container">
 </div>
