@@ -193,7 +193,8 @@ class manager{
 		$result=$utility->addanswer($q_id,$user_id,$ans);
 	
 	if ($result){
-		echo "done";
+		$result1=$utility->getauther($q_id);
+		$result1=$utility->addnotification($q_id,$user_id);
 	}else{
 		echo "error";
 	}
