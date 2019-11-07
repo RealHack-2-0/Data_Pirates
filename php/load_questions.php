@@ -1,5 +1,3 @@
-
-
 <div class="container">
 <?php 
 $manager=new manager();
@@ -10,9 +8,18 @@ foreach($resultArr as $result) {
   <div class="card-body">
     <h4 class="card-title">'.$result['title'].'</h4>
     <p class="card-text">'.$result['content'].'</p>
-    <a href="" class="btn btn-primary">Upvote</a>
-    <a href="" class="btn btn-primary">Downvote</a>
-    <a href="" class="btn btn-primary">View Answers</a>
+    <form action="manager.php" method="post">
+<button type="submit" value="upvote">Upvote</button>
+<input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
+</form>
+<form action="manager.php" method="post">
+  <button type="submit" value="downvote">Downvote</button>
+<input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
+</form>  
+<form action="manager.php" method="post">
+    <button type="submit" value="view_answers">View Answers</button>
+<input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
+</form>
   </div>
 </div>');
 };?>
