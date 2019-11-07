@@ -30,7 +30,7 @@
 				<input type="password" name="password" placeholder="Password" id="" required="">
 				<input type="password" name="reconfirmedPassword" placeholder="Re-Confirm Password" required="">
 				</br>
-				<input type="submit" name="signup_JS"value="Sign up" >
+				<input type="submit" name="signup"value="Sign up" >
 
 				<P>Already have an account ? <a href="login.php"> Log In Here</a></P>
 			</form>

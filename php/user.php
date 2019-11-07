@@ -18,8 +18,9 @@ class user{
         $this->email=$email;
         $this->password=$password;
         $this->name=$name;
-        $this->is_active=$as_active;
+        $this->is_active=$is_active;
         $this->status=$status;
+        $this->$token;
     }
 
     public function adduser(){

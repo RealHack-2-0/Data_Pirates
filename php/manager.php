@@ -2,10 +2,11 @@
 	require_once('logger.php');
 	require_once('Utility.php');
 	require_once('initialize.php'); 
+	require_once('user.php'); 
 ?>
 <?php
 if(isset($_POST['signup'])){
-	$manager->signupJS();  
+	$manager->signup();  
 }elseif (isset($_POST['login'])){
 	$manager->login(); 	
 }
@@ -13,6 +14,7 @@ if(isset($_POST['signup'])){
 class manager{
 	private $mylogger;
 	private $msg;
+	private $user;
 
 	private static $sessions=array();
 
@@ -33,28 +35,16 @@ class manager{
 
 	public function login(){
 		$this->msg = "";
-		$email=$_POST['email'];
+		$email =  $_POST['email'];
 		$psw=$_POST['password'];	
+
 		$this->mylogger = new logger($email,$psw);
 		$result=$this->mylogger->login();
 		if ($result){
 
-			//require_once('initialize.php'); 
-			//$db = Database::getInstance();
-			//$connection = $db->getConnection(); 
 			echo "Logged In";
 			$_SESSION['set']="set";
-			$_SESSION['currentseller']=new seller();
-			$gotInfo=($_SESSION['currentseller']->getBasicInfoByEmail($email));
-			//if($gotInfo){
-			//	$gotlist=$this->getSellersItemList(); 
-			//	echo "<pre>";
-			//	var_dump($gotlist);
-			//	echo "</pre>";
-			//	header("Location:sellerAcc.php");
-			//}else{
-			//	$this->msg = "something went wrong.Please try again";
-			//}
+			
 		}
 		else{
 			$this->msg = "Password, Username mismatch";
@@ -69,6 +59,7 @@ class manager{
 		$username=$_POST['user_name'];
 		$status = $_POST['status'];
 		$token = "";
+		$is_active = 1;
 
 		//////////////////////////////////////
 		$utility=new Utility();
@@ -95,8 +86,8 @@ class manager{
 	        	$this->msg = "Your email address has been used";
 	    	}
 	    	else{
-	    		$this->JS= new jobseeker();
-				$this->JS->init($email,$psw,$username,$status,$token);
+	    		$this->JS= new user();
+				$this->JS->init($email,$psw,$username,$status,$is_active,$token);
 
 				$entered_to_db=$this->JS->adduser();
 
