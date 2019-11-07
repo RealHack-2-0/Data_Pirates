@@ -140,6 +140,18 @@
 				return null;
 			}
 		}
+
+		public function load_notification($user_id){
+			$query="SELECT notification from notification where user_id = '$user_id' and status = '1'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+
 	}
 
 ?>

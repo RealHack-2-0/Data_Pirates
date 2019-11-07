@@ -193,14 +193,29 @@ class manager{
 		$result=$utility->addanswer($q_id,$user_id,$ans);
 	
 	if ($result){
-		$result1=$utility->getauther($q_id);
-		$result1=$utility->addnotification($q_id,$user_id);
+		$auther=$utility->getauther($q_id)[0];
+
+		$result1=$utility->addnotification($auther['user_id']);
 	}else{
 		echo "error";
 	}
 	
 
-}
+	}
+
+	public function load_notification(){
+		$user_id = $_SESSION['currentuser']['id'];
+
+		$utility=new Utility();
+		$result=$utility->load_notification($user_id);
+
+		if($result){
+			return $result;
+		}else{
+			return null;
+		}
+	}
+
 }
 
 ?>
