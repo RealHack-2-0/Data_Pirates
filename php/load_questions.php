@@ -4,9 +4,10 @@ $manager=new manager();
 $resultArr=$manager->load_questions();
 
 foreach($resultArr as $result) {
+  $resultArr=is_null($manager->load_answers($result['q_id'])) ? '': ' (Answered)';
   echo ('<div class="card border-success mb-3" >
   <div class="card-body">
-    <h4 class="card-title">'.$result['title'].'</h4>
+    <h4 class="card-title">'.$result['title'].$resultArr.'</h4>
     <p class="card-text">'.$result['content'].'</p>
   <div class="container">
     <div class="row">

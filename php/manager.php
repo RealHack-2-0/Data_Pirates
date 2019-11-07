@@ -17,7 +17,7 @@ if(isset($_POST['signup'])){
 	$manager->view_answers(); 	
 }elseif (isset($_POST['addquestion'])){
 	$manager->addquestion(); 	
-}elseif (isset($_POST['addquestion'])) {
+}elseif (isset($_POST['addanswer'])) {
 	$manager->addanswer(); 
 }
 
@@ -184,6 +184,22 @@ class manager{
 		return $result;
 	}
 
+	public function addanswer(){
+		$q_id = $_POST['q_id'];
+		$user_id = $_SESSION['currentuser']['id'];
+		$ans = $_POST['content'];
+
+		$utility=new Utility();
+		$result=$utility->addanswer($q_id,$user_id,$ans);
+	
+	if ($result){
+		echo "done";
+	}else{
+		echo "error";
+	}
+	
+
+}
 }
 
 ?>

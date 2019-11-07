@@ -110,6 +110,16 @@
 				return null;
 			}
 		}
+
+		public function addanswer($q_id,$user_id,$ans){
+			$query="INSERT INTO answer (user_id,content,q_id)VALUES ('$user_id','$ans','$q_id')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
 	}
 
 ?>
