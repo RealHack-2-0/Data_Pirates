@@ -148,7 +148,7 @@ class manager{
 		$questionadded = $utility->addquestion($subject_id['subject_id'],$title,$userid,$content);
 
 		if($questionadded){
-			echo "Q_added";
+			header("Location:index.php");
 		}else{
 			echo "error";
 		}
