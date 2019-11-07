@@ -185,6 +185,16 @@
 				return null;
 			}
 		}
+		
+		public function load_notification($user_id){
+			$query="SELECT notification from notification where user_id = '$user_id' and status = '1'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
 
 		public function set_best_answer($q_id,$ans_id){
 			$check="SELECT * from best_answer where q_id='$q_id' and ans='$ans_id'";
@@ -199,6 +209,15 @@
 
 		}
 
+		public function clear_notification($user_id){
+			$query="UPDATE notification SET status='0' WHERE user_id='$user_id' ";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
 	}
 
 ?>

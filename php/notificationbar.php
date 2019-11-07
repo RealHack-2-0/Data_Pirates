@@ -15,6 +15,7 @@
   transition: 0.5s;
   padding-top: 60px;
   margin-top: 75px;
+  color: white;
 }
 
 .sidenav a {
@@ -44,6 +45,7 @@
   right: 0;
   font-size: 22px;
   margin-right: 10px;
+  color: white;
 }
 
 @media screen and (max-height: 450px) {
@@ -75,22 +77,28 @@
 <body>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="javascript:void(0)" class="clearbtn" onclick="clearNav()">Clear</a>
+  
 </div>
 
 
 
 <script>
-$(document).ready(function() {
-    $.get( "/CodeBiz/MVC/notifications/show", function( data ) {
-        var countNotification = (data.match(/href/g) || []).length ;
-        $('.sidenav').append(data);
+$(document).ready(getNotif());
+
+setInterval(getNotif, 10000);
+
+function getNotif() {
+  $.getJSON( "/RealHack-webapp-master/php/getnotification.php", function( data ) {
+      var sidebtns = '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><a href="javascript:void(0)" class="clearbtn" onclick="clearNav()">Clear</a>';
+      var dataArr = data === null ? [] : data.map(data => `<p>${data.notification}</p>`)
+        var countNotification = dataArr.length ;
+        $('.sidenav').html([sidebtns,...dataArr]);
         if (countNotification != 0) {
-          $('.badge').append(countNotification);
+          $('.badge').html(countNotification);
         }       
     });
-});
+}
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "400px";
 }
@@ -100,7 +108,7 @@ function closeNav() {
 }
 
 function clearNav() {
-  $.post( "/CodeBiz/MVC/notifications/clear");
+  $.post( "/RealHack-webapp-master/php/clearnotification.php");
   $('.sidenav').html('<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><a href="javascript:void(0)" class="clearbtn" onclick="clearNav()">Clear</a></div>');
   $('.badge').hide()
 }
