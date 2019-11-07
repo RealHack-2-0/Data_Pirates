@@ -187,6 +187,7 @@ class manager{
 	public function addanswer(){
 		$q_id = $_POST['q_id'];
 		$user_id = $_SESSION['currentuser']['id'];
+
 		$ans = $_POST['content'];
 
 		$utility=new Utility();
@@ -208,6 +209,19 @@ class manager{
 
 		$utility=new Utility();
 		$result=$utility->load_notification($user_id);
+
+		if($result){
+			return $result;
+		}else{
+			return null;
+		}
+	}
+
+	public function clear_notifivation(){
+		$user_id = $_SESSION['currentuser']['id'];
+
+		$utility=new Utility();
+		$result=$utility->clear_notification($user_id);
 
 		if($result){
 			return $result;
