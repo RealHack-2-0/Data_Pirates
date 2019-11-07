@@ -45,7 +45,7 @@
 		}
 		//when logging in 
 		public function compareLoginDetails($email,$psw){
-			$query="SELECT * FROM jobseeker WHERE Email='$email' AND Password='$psw'";
+			$query="SELECT * FROM user WHERE Email='$email' AND Password='$psw'";
 			$result=$this->controller->numRows($query);
 
 			return $result;

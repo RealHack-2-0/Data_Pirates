@@ -1,0 +1,87 @@
+body{
+	margin:0;
+	padding:0;
+	font-family: sans-serif;
+	/*background: #34495e;*/
+
+}
+title{ color: white; font: 10px sans-serif} 
+header{
+	background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(../img/office_2.jpeg);
+	height:190vh;
+	background-size: cover;
+	background-position: center;
+}
+
+.box{
+	width: 35%;
+	padding: 20px 40px 0 40px;
+	float: left;
+	margin: 5% 0 0 33%;
+	background:#424949 ;
+	text-align: center;
+	opacity: 0.95;
+}
+.box h2{
+	color: white;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+.box input[type="email"], .box input[type="radio"],.box input[type="text"],.box input[type="password"],.box input[type="tel"],.box input[type="date"],.box input[type="number"]{
+	border:0;
+	background:none;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+.box input[type="email"], .box input[type="text"],.box input[type="password"],.box input[type="tel"],.box input[type="date"],.box input[type="number"]{
+	width:280px;
+	border-color: #2E86C1;
+}
+.box input[type="submit"]{
+	border:0;
+	background: none ;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid #2ecc71;
+	padding: 14px 40px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+	cursor: pointer;
+}
+.box input[type="submit"]:hover{
+	background: #2ecc71 ;
+}
+
+.box p{	
+	font-style: italic;
+	color: white ;
+}
+
+.box a{
+	font-style: normal;
+	text-decoration: none;
+	color: #ff4d4d;
+}
+
+.box a:hover{
+	font-style: italic;
+}
+
+.box h6{
+	color: white;
+}
+
+.box h3{
+	color: white;
+}
