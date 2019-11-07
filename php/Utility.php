@@ -79,6 +79,18 @@
 			}
 		}
 
+		public function getSubjectss(){
+			$query="SELECT sub_name from subject";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+
+
 	}
 
 ?>

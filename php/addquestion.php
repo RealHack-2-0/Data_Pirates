@@ -5,6 +5,11 @@ if(isset($_SESSION['set'])){
 else{
   header("Location:index.php");
 }
+
+$manager=new manager();
+$resultArr=$manager->load_subjects();
+
+print_r($resultArr);
 ?>
 
 
