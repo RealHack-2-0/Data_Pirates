@@ -4,12 +4,10 @@
 	require_once('initialize.php'); 
 ?>
 <?php
-if(isset($_POST['signup_JS'])){
+if(isset($_POST['signup'])){
 	$manager->signupJS();  
 }elseif (isset($_POST['login'])){
 	$manager->login(); 	
-}elseif (isset($_POST['add_exam'])){
-	$manager->addexam();
 }
 
 class manager{
@@ -64,17 +62,12 @@ class manager{
 		}
 	}
 
-	public function signupJS(){
+	public function signup(){
 
 		$email=$_POST['Email'];
 		$psw=$_POST['password'];
-		$nic=$_POST['nic'];
-		$firstname=$_POST['first_name'];
-		$lastname=$_POST['last_name'];
-		$dob = $_POST['date_of_birth'];
-		$gender = $_POST['gender'];
-		$address = $_POST['address'];
-		$telephone = $_POST['phone'];
+		$username=$_POST['user_name'];
+		$status = $_POST['status'];
 		$token = "";
 
 		//////////////////////////////////////
@@ -103,15 +96,15 @@ class manager{
 	    	}
 	    	else{
 	    		$this->JS= new jobseeker();
-				$this->JS->init($email,$psw,$firstname,$lastname,$telephone,$gender,$address,$nic,$token);
+				$this->JS->init($email,$psw,$username,$status,$token);
 
-				$entered_to_db=$this->JS->addJS();
+				$entered_to_db=$this->JS->adduser();
 
 				if($entered_to_db){
 
 					$_SESSION['JS_email'] = $email ;
 
-					header("Location:JSlogin.php");
+					header("Location:login.php");
 					$this->msg = "Done";
 					//$this->getsellerRequestsList();					
 				}else{

@@ -2,6 +2,6 @@
 	$config['hostname'] = "localhost";
 	$config['dbuser'] = "root";
 	$config['dbpassword'] = "";
-	$config['dbname'] = "JobHunt";
+	$config['dbname'] = "RealHack";
 	$config['adminpassword'] = "pasword123";
  ?>
