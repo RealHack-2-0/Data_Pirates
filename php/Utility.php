@@ -185,7 +185,7 @@
 		}
 
 		public function clear_notification($user_id){
-			$query="UPDATE notification SET status=0 WHERE user_id='$user_id' ";
+			$query="UPDATE notification SET status='0' WHERE user_id='$user_id' ";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;

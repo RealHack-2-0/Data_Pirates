@@ -90,8 +90,7 @@ setInterval(getNotif, 10000);
 function getNotif() {
   $.getJSON( "/RealHack-webapp-master/php/getnotification.php", function( data ) {
       var sidebtns = '<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><a href="javascript:void(0)" class="clearbtn" onclick="clearNav()">Clear</a>';
-      var dataArr = data.map(data => `<p>${data.notification}</p>`)
-      console.log( dataArr)
+      var dataArr = data === null ? [] : data.map(data => `<p>${data.notification}</p>`)
         var countNotification = dataArr.length ;
         $('.sidenav').html([sidebtns,...dataArr]);
         if (countNotification != 0) {
@@ -109,7 +108,7 @@ function closeNav() {
 }
 
 function clearNav() {
-  $.post( "/CodeBiz/MVC/notifications/clear");
+  $.post( "/RealHack-webapp-master/php/clearnotification.php");
   $('.sidenav').html('<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><a href="javascript:void(0)" class="clearbtn" onclick="clearNav()">Clear</a></div>');
   $('.badge').hide()
 }

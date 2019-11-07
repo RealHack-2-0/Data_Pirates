@@ -258,7 +258,7 @@ class manager{
 		}
 	}
 
-	public function clear_notifivation(){
+	public function clear_notification(){
 		$user_id = $_SESSION['currentuser']['id'];
 
 		$utility=new Utility();
