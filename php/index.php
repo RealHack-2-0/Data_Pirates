@@ -1,3 +1,15 @@
+
+<?php 
+require_once('initialize.php');
+if(isset($_SESSION['set'])){
+  echo "logged in";
+}
+else{
+  echo "not logged in";
+}
+
+ ?>
+
 <?php require_once('Connection.php'); 
       require_once('initialize.php');
  $db = Database::getInstance();
