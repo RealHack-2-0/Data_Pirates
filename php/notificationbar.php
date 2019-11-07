@@ -85,7 +85,7 @@
 <script>
 $(document).ready(getNotif());
 
-setInterval(getNotif, 10000);
+setInterval(getNotif, 5000);
 
 function getNotif() {
   $.getJSON( "/RealHack-webapp-master/php/getnotification.php", function( data ) {

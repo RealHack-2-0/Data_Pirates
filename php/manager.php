@@ -203,14 +203,14 @@ class manager{
 
 	public function upvote(){
 		$utility=new Utility();
-		$result=$utility->upvote($_POST['q_id'],$_POST['id']);
-		return $result;
+		$result=$utility->upvote($_POST['q_id'], $_SESSION['currentuser']['id']);
+		header("Location:index.php");
 	}
 
 	public function downvote(){
 		$utility=new Utility();
-		$result=$utility->downvote($_POST['q_id'],$_POST['id']);
-		return $result;
+		$result=$utility->downvote($_POST['q_id'],$_SESSION['currentuser']['id']);
+		header("Location:index.php");
 	}
 
 	public function load_subjects(){
@@ -238,6 +238,8 @@ class manager{
 		$auther=$utility->getauther($q_id)[0];
 
 		$result1=$utility->addnotification($auther['user_id']);
+		header("Location:index.php");
+
 	}else{
 		echo "error";
 	}
