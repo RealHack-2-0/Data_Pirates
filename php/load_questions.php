@@ -51,17 +51,4 @@ require_once('utility.php');
 $manager=new manager();
 
 $result=$manager->load_questions();
-
-echo "<table border='1'>
-<tr>
-<th>Top questions for you</th>
-</tr>";
-$utility=new utility();
-while($row = mysqli_fetch_array($result,$utility->controller))
-{
-echo "<tr>";
-echo "<td>" . $row['content'] . "</td>";
-echo "</tr>";
-}
-echo "</table>";
-?>
+echo var_dump($result);
