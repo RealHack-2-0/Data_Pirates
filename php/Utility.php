@@ -8,7 +8,7 @@
 
 <?php 
 	class Utility{
-		private $controller;
+		public $controller;
 
 		public function __construct(){
 			$this->controller= new DBController();

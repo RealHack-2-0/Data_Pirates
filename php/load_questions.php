@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
   </head>
   <body>
     <table class="table table-hover">
@@ -47,9 +46,22 @@
 <?php 
 
 require_once('manager.php');
+require_once('utility.php');
 
 $manager=new manager();
 
 $result=$manager->load_questions();
-echo var_dump($result);
- ?>
+
+echo "<table border='1'>
+<tr>
+<th>Top questions for you</th>
+</tr>";
+$utility=new utility();
+while($row = mysqli_fetch_array($result,$utility->controller))
+{
+echo "<tr>";
+echo "<td>" . $row['content'] . "</td>";
+echo "</tr>";
+}
+echo "</table>";
+?>
