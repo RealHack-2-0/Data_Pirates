@@ -3,9 +3,6 @@
 	 require_once('config.php');
 	?>
 
-
-
-
 <?php 
 	class Utility{
 		public $controller;
@@ -101,6 +98,16 @@
 				return $result;
 			}else{
 				return null;
+			}
+		}
+
+		public function load_answers($q_id){
+			$query="SELECT * from answer,user where user_id=id and q_id='$q_id'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return $q_id;
 			}
 		}
 	}
