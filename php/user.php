@@ -24,7 +24,7 @@ class user{
     }
 
     public function adduser(){
-		$result=$this->utility->adduser($this->email,$this->password,$this->name,$this->is_active);
+		$result=$this->utility->adduser($this->email,$this->password,$this->name,$this->is_active,$this->status);
         return $result;
 	}
 

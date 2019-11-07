@@ -11,8 +11,8 @@
 			$this->controller= new DBController();
 		}
 
-		public function adduser($email,$password,$name,$is_active){
-			$query="INSERT INTO user (email,password,username,isActive)VALUES ('$email','$password','$name','$is_active')";
+		public function adduser($email,$password,$name,$is_active,$status){
+			$query="INSERT INTO user (email,password,username,isActive,type)VALUES ('$email','$password','$name','$is_active','$status')";
 			$result=$this->controller->insertQuery($query);
 			if($result){
 				return true;
