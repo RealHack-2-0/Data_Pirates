@@ -145,13 +145,54 @@ class manager{
 		$utility=new Utility();
 		$subject_id = $utility->getsubjectid($subject)[0];
 		
-		$questionadded = $utility->addquestion($subject_id['subject_id'],$title,$userid,$content);
+		
+		$curl = curl_init();
 
-		if($questionadded){
-			header("Location:index.php");
-		}else{
-			echo "error";
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://neutrinoapi-bad-word-filter.p.rapidapi.com/bad-word-filter",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => "censor-character=*&content=".$content,
+			CURLOPT_HTTPHEADER => array(
+				"content-type: application/x-www-form-urlencoded",
+				"x-rapidapi-host: neutrinoapi-bad-word-filter.p.rapidapi.com",
+				"x-rapidapi-key: 3cb6895adbmsh5256492076c1bdbp1c559ejsn1d6cca791b63"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$response = (int)substr($response,-2,1);
+			//echo (int)substr($response,-2,1);
 		}
+
+		if ($response) {
+			$response = (int)substr($response,-2,1);
+			echo "Offensive";
+
+		} else {
+			$questionadded = $utility->addquestion($subject_id['subject_id'],$title,$userid,$content);
+
+			if($questionadded){
+				header("Location:index.php");
+			}else{
+				echo "error";
+			}
+
+		}
+
+		
 	}
 
 	public function load_questions(){
