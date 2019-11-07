@@ -29,6 +29,18 @@ class user{
         return $result;
 	}
 
-
+    public function getBasicInfoByEmail($email){
+        $result=$this->utility->getBasicInfoByEmail($email);
+        if ($result){
+            $this->id=$result[0]['id'];
+            $this->name=$result[0]['username'];
+            $this->email=$result[0]['email'];
+            $this->status=$result[0]['type'];
+            $this->is_active=$result[0]['isActive'];
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

@@ -1,7 +1,7 @@
 <?php 
 	require_once('logger.php');
 	require_once('Utility.php');
-	require_once('initialize.php'); 
+	require_once('initialize.php');
 	require_once('user.php'); 
 ?>
 <?php
@@ -46,6 +46,11 @@ class manager{
 
 			echo "Logged In";
 			$_SESSION['set']="set";
+			$_SESSION['currentuser']=new user();
+			$gotInfo=($_SESSION['currentuser']->getBasicInfoByEmail($email));
+			
+
+
 			
 		}
 		else{
@@ -95,7 +100,7 @@ class manager{
 
 				if($entered_to_db){
 
-					$_SESSION['JS_email'] = $email ;
+					$_SESSION['email'] = $email ;
 
 					header("Location:login.php");
 					$this->msg = "Done";
@@ -119,7 +124,23 @@ class manager{
 	}
 
 	public function addquestion(){
+		$currentuser = $_SESSION['currentuser'];
+		$userid = $currentuser ->id;
 
+		$content = $_POST['content'];
+		$title = $_POST['title'];
+		$subject = $_POST['subject'];
+
+		$utility=new Utility();
+		$subject_id = $utility->getsubjectid($subject);
+
+		$questionadded = $utility->addquestion($subject_id,$title,$userid,$content);
+
+		if($questionadded){
+			echo "Q_added";
+		}else{
+			echo "error";
+		}
 	}
 
 
