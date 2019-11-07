@@ -170,9 +170,6 @@ class manager{
 		return $result;
 	}
 
-	public function view_answers(){
-		$utility=new Utility();
-		$result=$utility->view_answers($_POST['q_id']);
 	public function load_subjects(){
 		$utility=new Utility();
 		$result=$utility->getSubjectss();
