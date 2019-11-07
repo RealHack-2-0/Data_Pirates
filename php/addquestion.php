@@ -40,7 +40,6 @@ $resultArr=$manager->load_subjects();
 			<div class="form-group">
 			<label for="">Subject</label>
      			<select class="form-control" name="subject" type="text" placeholder="status" >
-		        <option>None</option>
 						<?php 
 							foreach($resultArr as $result) {
 									echo('
