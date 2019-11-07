@@ -79,6 +79,26 @@
 			}
 		}
 
+		public function upvote($q_id){
+			$query="UPDATE question SET upvote_count=upvote_count+1 WHERE q_id='$q_id'";
+			$result=$this->controller->updateQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function downvote($q_id){
+			$query="UPDATE question SET downvote_count=downvote_count+1 WHERE q_id='$q_id'";
+			$result=$this->controller->updateQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
 	}
 
 ?>

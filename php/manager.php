@@ -6,9 +6,15 @@
 ?>
 <?php
 if(isset($_POST['signup'])){
-	$manager->signup();  
+	$manager->signup(); 
 }elseif (isset($_POST['login'])){
-	$manager->login(); 	
+	$manager->login();
+}elseif (isset($_POST['upvote'])){
+	$manager->upvote();
+}elseif (isset($_POST['downvote'])){
+	$manager->downvote();
+}elseif (isset($_POST['view_answers'])){
+	$manager->view_answers(); 	
 }elseif (isset($_POST['addquestion'])){
 	$manager->addquestion(); 	
 }
@@ -116,7 +122,7 @@ class manager{
 			elseif(!empty($_POST["password"])) {
 	    		$this->msg = "Please Check You've Entered Or Confirmed Your Password!";
 			} else {
-	     	$this->msg = "Please enter password   ";
+	     	$this->msg = "Please enter password";
 			}
 			if($this->msg == "Done"){}
 			else{
@@ -153,6 +159,23 @@ class manager{
 		return $result;
 	}
 
+	public function upvote(){
+		$utility=new Utility();
+		$result=$utility->upvote($_POST['q_id']);
+		return $result;
+	}
+
+	public function downvote(){
+		$utility=new Utility();
+		$result=$utility->downvote($_POST['q_id']);
+		return $result;
+	}
+
+	public function view_answers(){
+		$utility=new Utility();
+		$result=$utility->view_answers($_POST['q_id']);
+		return $result;
+	}
 }
 
 ?>
