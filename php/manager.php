@@ -48,7 +48,7 @@ class manager{
 			$_SESSION['set']="set";
 
 			$utility=new Utility();
-			$_SESSION['currentuser']= $utility -> getUserIdInfoByEmail($email);
+			$_SESSION['currentuser']= $utility -> getUserIdInfoByEmail($email)[0];
 			
 			$user = $_SESSION['currentuser'];
 			print_r($user);
@@ -127,16 +127,18 @@ class manager{
 	}
 
 	public function addquestion(){
-		$userid = $_SESSION['currentuser'];
+		$userid = $_SESSION['currentuser']['id'];
 
+	
 		$content = $_POST['content'];
 		$title = $_POST['title'];
 		$subject = $_POST['subject'];
 
 		$utility=new Utility();
-		$subject_id = $utility->getsubjectid($subject);
+		$subject_id = $utility->getsubjectid($subject)[0];
+		print_r($subject_id);
 
-		$questionadded = $utility->addquestion($subject_id,$title,$userid,$content);
+		$questionadded = $utility->addquestion($subject_id['subject_id'],$title,$userid,$content);
 
 		if($questionadded){
 			echo "Q_added";

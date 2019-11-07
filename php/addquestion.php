@@ -1,3 +1,12 @@
+<?php 
+require_once('initialize.php');
+if(isset($_SESSION['set'])){
+}
+else{
+  header("Location:index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -57,6 +57,18 @@
 			}
 		}
 
+
+		public function addquestion($subject_id,$title,$userid,$content){
+			$query="INSERT INTO question (user_id,subject_id,title,content)VALUES ('$userid','$subject_id','$title','$content')";
+			$result=$this->controller->insertQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+
 		public function getQuestions(){
 			$query="SELECT * from question order by upvote_count desc limit 10";
 			$result=$this->controller->runQuery($query);
