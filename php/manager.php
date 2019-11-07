@@ -178,9 +178,9 @@ class manager{
 		return $result;
 	}
 
-	public function load_answers(){
+	public function load_answers($q_id){
 		$utility=new Utility();
-		$result=$utility->load_answers($_GET['q_id']);
+		$result=$utility->load_answers($q_id);
 		return $result;
 	}
 
