@@ -107,7 +107,7 @@
 			if($result){
 				return $result;
 			}else{
-				return $q_id;
+				return null;
 			}
 		}
 	}
