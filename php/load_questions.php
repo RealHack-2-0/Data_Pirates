@@ -8,19 +8,18 @@ foreach($resultArr as $result) {
   <div class="card-body">
     <h4 class="card-title">'.$result['title'].'</h4>
     <p class="card-text">'.$result['content'].'</p>
-    <form action="manager.php" method="post">
-<button type="submit" class="btn btn-success" value="upvote">Upvote</button>
+    
+<form action="manager.php" method="post">
+<button type="submit" name="upvote" value="upvote">Upvote</button>
 <input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
 </form>
 <form action="manager.php" method="post">
-  <button type="submit" class="btn btn-danger" value="downvote">Downvote</button>
+  <button type="submit" name="downvote" value="downvote">Downvote</button>
 <input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
-</form>  
-<form action="manager.php" method="post">
-    <button type="submit" value="view_answers">View Answers</button>
-<input type="hidden" id="q_id" name="q_id" value='.$result['q_id'].'>
-</form>
-  </div>
+</form> 
+<a href="view_answers.php?id='.$result['q_id'].'">View Answers</a> 
+
+</div>
 </div>');
 };?>
 </div>
