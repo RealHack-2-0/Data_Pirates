@@ -9,6 +9,8 @@ if(isset($_POST['signup'])){
 	$manager->signup();  
 }elseif (isset($_POST['login'])){
 	$manager->login(); 	
+}elseif (isset($_POST['addquestion'])){
+	$manager->addquestion(); 	
 }
 
 class manager{
@@ -114,6 +116,10 @@ class manager{
 			echo $this->msg;
 
 		}
+	}
+
+	public function addquestion(){
+
 	}
 
 

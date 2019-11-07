@@ -8,6 +8,7 @@ class user{
 	public $email;
 	public $is_active;
 	public $status;
+	public $password;
 
 	
 	public function __construct(){
