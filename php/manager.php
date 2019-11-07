@@ -44,10 +44,12 @@ class manager{
 		$result=$this->mylogger->login();
 		if ($result){
 
-			echo "Logged In";
+			
 			$_SESSION['set']="set";
 			$_SESSION['currentuser']=new user();
 			$gotInfo=($_SESSION['currentuser']->getBasicInfoByEmail($email));
+
+			header("Location:LoginError.php");
 			
 
 
