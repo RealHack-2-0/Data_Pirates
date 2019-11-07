@@ -1,7 +1,5 @@
-<?php require_once('Connection.php'); 
-      require_once('initialize.php');
- $db = Database::getInstance();
- $conn = $db->getConnection();?>
+<?php require_once('manager.php');
+require_once('utility.php'); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -27,29 +25,7 @@
 
 	<header>
   <div style="margin-top: 50px">
-    <?php
-        function insertQuery($query,$conn) {
-          $result4 = mysqli_query($conn, $query);
-        if (!$result4) {
-            die('Invalid query: ' . mysqli_error($conn));
-        } else {
-            return mysqli_insert_id($conn);
-        }
-      }
-      function getQuestions($conn){
-        $query="SELECT * FROM `question`";
-        $result=insertQuery($query,$conn);
-        if($result){
-          echo($result);
-        }else{
-          echo('no');
-        }
-      }
-
-      getQuestions($conn)
-
-    ?>
-    <?php include 'question.php' ?>
+    <?php include 'load_questions.php' ?>
   </div>
 	</header>
 </body>
