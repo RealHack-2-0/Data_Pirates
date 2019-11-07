@@ -37,8 +37,8 @@
 			return $result;
 		}
 
-		public function getBasicInfoByEmail($email){
-			$query="SELECT * FROM user WHERE email='$email'";
+		public function getUserIdInfoByEmail($email){
+			$query="SELECT id FROM user WHERE email='$email'";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;
@@ -49,6 +49,16 @@
 		
 		public function getsubjectid($subject){
 			$query="SELECT subject_id FROM subject WHERE sub_name='$subject'";
+			$result=$this->controller->runQuery($query);
+			if($result){
+				return $result;
+			}else{
+				return null;
+			}
+		}
+
+		public function getQuestions(){
+			$query="SELECT content from question order by upvote_count desc limit 10";
 			$result=$this->controller->runQuery($query);
 			if($result){
 				return $result;

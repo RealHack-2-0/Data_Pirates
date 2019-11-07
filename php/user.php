@@ -15,13 +15,12 @@ class user{
     	$this->utility= new Utility();
     }
 
-    public function init($email,$password,$name,$status,$is_active,$token){
+    public function init($email,$password,$name,$status,$is_active){
         $this->email=$email;
         $this->password=$password;
         $this->name=$name;
         $this->is_active=$is_active;
         $this->status=$status;
-        $this->$token;
     }
 
     public function adduser(){
