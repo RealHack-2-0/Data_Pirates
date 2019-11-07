@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="addquestion.php">Add Question</a>
@@ -21,6 +21,12 @@
       <li class="nav-item">
         <a class="nav-link" href="signup.php">Sign Up</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)">
+          <span class="" id="notification" onclick="openNav()">Notifications</span>
+          <span class="badge"></span>
+        </a>
+      </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -28,3 +34,4 @@
     </form> -->
   </div>
 </nav>
+<?php include 'notificationbar.php' ?>
